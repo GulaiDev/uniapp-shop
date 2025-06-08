@@ -1,5 +1,7 @@
 <template>
   <view>
+    <!-- 使用自定义的搜索组件 -->
+    <my-search @click="gotoSearch"></my-search>
     <view class="scroll-view-container">
       <!-- 左侧的滚动视图区域 -->
       <scroll-view class="left-scroll-view" scroll-y :style="{ height: wh + 'px' }">
@@ -41,6 +43,13 @@ const cateLevel2 = ref([]);
 const active = ref(0);
 // 滚动条距离顶部的距离
 const scrollTop=ref(0) 
+
+//跳转到分包中的搜索页面
+function gotoSearch(){
+  uni.navigateTo({
+    url:"/subpkg/search/search"
+  })
+}
 
 //选中项改变的事件处理函数
 function activeChanged(i) {

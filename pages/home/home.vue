@@ -1,4 +1,8 @@
 <template>
+  <!-- 使用自定义的搜索组件 -->
+  <view class="search-box">
+    <my-search @click="gotoSearch"></my-search>
+  </view>
   <view>
     <!-- 轮播图区域 -->
     <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" :circular="true">
@@ -51,7 +55,12 @@ const navList = ref([]);
 //楼顶的数据列表
 const floorList = ref([]);
 
-
+//跳转到分包中的搜索页面
+function gotoSearch(){
+  uni.navigateTo({
+    url:"/subpkg/search/search"
+  })
+}
 //去掉index===0的数据
 function filteredProductList(list){
   return list.filter((_,index)=>index!==0);
@@ -110,6 +119,14 @@ onLoad(() => {
 </script>
 
 <style lang="scss">
+.search-box{
+   // 设置定位效果为“吸顶”
+    position: sticky;
+    // 吸顶的“位置”
+    top: 0;
+    // 提高层级，防止被轮播图覆盖
+    z-index: 999;
+}
 .swiper-item {
   height: 330rpx;
   image {
